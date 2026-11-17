@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Sistema de demostración para la Terminal de Transporte La Sábana de Sincelejo.">
+  <meta name="theme-color" content="#12345a">
+  <title>Terminal La Sábana | Sistema de gestión</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <section id="auth" class="auth">
+    <div class="auth-cover">
+      <div class="brand"><span class="brand-logo">LS</span><span><b>LA SÁBANA</b><small>Terminal de transporte</small></span></div>
+      <div class="cover-copy">
+        <span class="eyebrow">PLATAFORMA DE GESTIÓN</span>
+        <h1>Tu viaje empieza<br><em>con una mejor organización.</em></h1>
+        <p>Consulta trayectos, registra reservas y apoya la operación de la terminal desde un solo lugar.</p>
+        <div class="cover-points"><span>✓ Consulta de rutas</span><span>✓ Gestión de despachos</span><span>✓ Atención al pasajero</span></div>
+      </div>
+      <div class="cover-foot">Sincelejo · Sucre · Colombia</div>
+    </div>
+    <div class="auth-side">
+      <form id="loginForm" class="auth-card">
+        <div class="mobile-brand">LS · LA SÁBANA</div>
+        <span class="eyebrow blue">BIENVENIDO/A</span>
+        <h2>Iniciar sesión</h2>
+        <p class="muted">Ingresa con tu cuenta para continuar.</p>
+        <label for="loginUser">Usuario o correo</label><input id="loginUser" autocomplete="username" required placeholder="Tu usuario o correo">
+        <label for="loginPass">Contraseña</label><div class="password"><input id="loginPass" type="password" autocomplete="current-password" required placeholder="Tu contraseña"><button type="button" id="togglePass" class="eye">Mostrar</button></div>
+        <p id="loginError" class="error"></p>
+        <button class="btn primary wide">Ingresar <span>→</span></button>
+        <div class="auth-switch">¿No tienes cuenta? <button type="button" class="link" id="showRegister">Regístrate como pasajero</button></div>
+        <details class="demo"><summary>Accesos de demostración</summary><p><b>Administrador:</b> admin / admin123</p><p><b>Pasajero:</b> pasajero / pasajero123</p></details>
+        <small class="disclaimer">Prototipo académico. No ingreses datos personales ni contraseñas reales.</small>
+      </form>
+      <form id="registerForm" class="auth-card hidden">
+        <button type="button" id="backLogin" class="back">← Volver al inicio de sesión</button>
+        <span class="eyebrow blue">NUEVA CUENTA</span><h2>Registro de pasajero</h2><p class="muted">Completa tus datos para crear una cuenta de demostración.</p>
+        <label for="regName">Nombre completo</label><input id="regName" maxlength="90" required placeholder="Nombre y apellidos">
+        <label for="regUser">Nombre de usuario</label><input id="regUser" maxlength="24" pattern="[A-Za-z0-9_-]+" required placeholder="Ej. maria123">
+        <label for="regEmail">Correo electrónico</label><input id="regEmail" type="email" maxlength="120" required placeholder="correo@ejemplo.com">
+        <label for="regPhone">Teléfono (opcional)</label><input id="regPhone" type="tel" maxlength="20" placeholder="Número de contacto">
+        <label for="regPass">Contraseña (mínimo 8 caracteres)</label><input id="regPass" type="password" minlength="8" required>
+        <label for="regPass2">Confirmar contraseña</label><input id="regPass2" type="password" minlength="8" required>
+        <p id="registerError" class="error"></p><button class="btn primary wide">Crear cuenta</button>
+        <small class="disclaimer">Los datos se guardan solo en este navegador en esta versión de demostración.</small>
+      </form>
+    </div>
+  </section>
+
+  <div id="application" class="app hidden">
+    <aside id="sidebar" class="sidebar">
+      <div class="brand side-brand"><span class="brand-logo">LS</span><span><b>LA SÁBANA</b><small>Terminal de transporte</small></span></div>
+      <div class="side-label">MENÚ PRINCIPAL</div>
+      <nav id="navigation">
+        <button data-page="dashboard" class="nav active"><i>⌂</i>Resumen</button>
+        <button data-page="routes" class="nav"><i>⇄</i>Consultar pasajes</button>
+        <button data-page="mybookings" class="nav passenger-only"><i>▤</i>Mis reservas</button>
+        <button data-page="dispatches" class="nav admin-only"><i>↗</i>Despachos y bahías</button>
+        <button data-page="incidents" class="nav"><i>⚑</i>Incidencias</button>
+        <button data-page="admin" class="nav admin-only"><i>▦</i>Administración</button>
+      </nav>
+      <div class="sidebar-bottom"><div class="help"><b>¿Necesitas ayuda?</b><p>Acércate al personal de atención de la terminal.</p></div><button id="logout" class="logout">↪ Cerrar sesión</button></div>
+    </aside>
+    <main class="main">
+      <header class="topbar"><button id="menuToggle" class="menu-toggle">☰</button><div><small>Plataforma /</small> <b id="pageTitle">Resumen</b></div><div class="profile"><span class="online"></span><span id="currentName">Usuario</span><span id="currentRole" class="role">Pasajero</span><span id="avatar" class="avatar">U</span></div></header>
+      <div id="page" class="page"></div>
+      <footer class="footer">Terminal de Transporte La Sábana · Prototipo académico <span>Tarifas y horarios ilustrativos</span></footer>
+    </main>
+  </div>
+  <div id="modalRoot"></div>
+  <script src="app.js"></script>
+</body>
+</html>
